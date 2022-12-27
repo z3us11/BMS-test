@@ -52,6 +52,11 @@ public static class AStar
         }
         path.Reverse();
 
+        if (path[path.Count - 1] != goal)
+        {
+            return null;
+        }
+
         return path;
     }
 

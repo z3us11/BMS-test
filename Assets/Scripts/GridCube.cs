@@ -56,6 +56,8 @@ public class GridCube : MonoBehaviour
     {
         if (GameManager.instance.isMoving)
             return;
+        if (obstacle.activeSelf)
+            return;
 
         GameManager.instance.StartMovement(this);
     }

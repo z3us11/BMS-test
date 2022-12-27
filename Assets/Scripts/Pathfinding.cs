@@ -20,6 +20,9 @@ public class Pathfinding : MonoBehaviour
         List<GridCube> path = AStar.Search(GameManager.instance.gridSpawner,
                                 GameManager.instance.gridSpawner.cubesArray[gridStartX, gridStartY], GameManager.instance.gridSpawner.cubesArray[gridEndX, gridEndY]);
 
+        if (path == null)
+            return null;
+
         foreach (var cube in path)
             cube.SetAsPath();
 

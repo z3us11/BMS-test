@@ -48,21 +48,27 @@ public class GameManager : MonoBehaviour
     }
     public void StartMovement(GridCube endCube)
     {
+        if (startCubePlayer.Index == endCube.Index)
+            return;
+
         isMoving = true;
         var path = pathfinder.FindPath(startCubePlayer.Index, endCube.Index);
 
-        var _path = path.GetEnumerator();
-
-        _player.MovePlayer(_path);
+        if (path == null)
+        {
+            isMoving = false;
+            return;
+        }
+        _player.MovePlayer(path);
         startCubePlayer = endCube;
     }
     public void MoveAI()
     {
         isMoving = true;
 
-        var nearestCubes = GameManager.instance.gridSpawner.NearestNeighbors(gridSpawner.
-                                                                             cubesArray[(int)gridSpawner.GetCubeIndex(_player.transform.position).x,
-                                                                                        (int)gridSpawner.GetCubeIndex(_player.transform.position).y], true);
+        var nearestCubes = gridSpawner.NearestNeighbors(gridSpawner.
+                                                        cubesArray[(int)gridSpawner.GetCubeIndex(_player.transform.position).x,
+                                                                   (int)gridSpawner.GetCubeIndex(_player.transform.position).y], true);
 
         GridCube endCube = new GridCube();
         float minDistance = float.MaxValue;
@@ -75,10 +81,20 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        var path = pathfinder.FindPath(startCubeAI.Index, endCube.Index);
-        var _path = path.GetEnumerator();
+        if (startCubeAI.Index == endCube.Index)
+        {
+            isMoving = false;
+            return;
+        }
 
-        _ai.MovePlayer(_path, true);
+        var path = pathfinder.FindPath(startCubeAI.Index, endCube.Index);
+
+        if (path == null)
+        {
+            isMoving = false;
+            return;
+        }
+        _ai.MovePlayer(path, true);
         startCubeAI = endCube;
 
     }

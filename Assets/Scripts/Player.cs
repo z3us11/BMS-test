@@ -48,6 +48,31 @@ public class Player : MonoBehaviour
         transform.LookAt(newPos);
         transform.DOMove(newPos, 0.25f).
             OnComplete(() => MovePlayer(path, isAI));
+
+        
     }
+
+    public void MovePlayer(List<GridCube> path, bool isAI = false)
+    {
+        if (!anim.GetBool("isRunning"))
+            anim.SetBool("isRunning", true);
+        Vector3 newPos = new Vector3(path[0].transform.position.x, transform.position.y, path[0].transform.position.z);
+        transform.LookAt(newPos);
+
+        path.RemoveAt(0);
+        transform.DOMove(newPos, 0.25f).OnComplete(()=> 
+            {
+                if (path.Count != 0)
+                    MovePlayer(path, isAI);
+                else
+                {
+                    GameManager.instance.isMoving = false;
+                    anim.SetBool("isRunning", false);
+                    if (!isAI)
+                        GameManager.instance.MoveAI();
+                }
+            });
+    }
+
 
 }

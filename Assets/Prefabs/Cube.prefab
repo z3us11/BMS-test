@@ -111,11 +111,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fc106e1e1c3c054980099e70a982aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _renderer: {fileID: 0}
   Priority: 0
   obstacle: {fileID: 8449156185002199805}
   selected: {fileID: 2100000, guid: bd26e3d2d0f56b54d95b8f3b244d407f, type: 2}
   unselected: {fileID: 2100000, guid: 3c560b1c5b4a7c048ba5f9b87a27ffd7, type: 2}
   path: {fileID: 2100000, guid: 6c8cc2afdf3d02049b71a1f5abc7ab90, type: 2}
+  invalid: {fileID: 2100000, guid: 53441007c7fbacd44a62e0c368d68230, type: 2}
 --- !u!1 &8449156185002199805
 GameObject:
   m_ObjectHideFlags: 0
