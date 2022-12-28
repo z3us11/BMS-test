@@ -14,6 +14,9 @@ public class ObstacleManager : MonoBehaviour
     {
         cubeArray = GameManager.instance.gridSpawner.cubesArray;
         toggles = new bool[cubeArray.GetLength(0), cubeArray.GetLength(1)];
+
+        if(obstacleScriptableObj.obstacles.Length < cubeArray.Length)
+            obstacleScriptableObj.obstacles = new int[cubeArray.Length];
     }
 
     public void InitObstacles()
@@ -33,6 +36,7 @@ public class ObstacleManager : MonoBehaviour
 
     public void SaveObstacles()
     {
+        obstacleScriptableObj.totalObstacles = 0;
         for (int i = 0; i < toggles.GetLength(0); i++)
         {
             for (int j = 0; j < toggles.GetLength(1); j++)
@@ -54,9 +58,8 @@ public class ObstacleManager : MonoBehaviour
     public void ResetObstacles()
     {
         obstacleScriptableObj.totalObstacles = 0;
-        for(int i = 0; i < obstacleScriptableObj.obstacles.Length; i++)
-            obstacleScriptableObj.obstacles[i] = 0;
 
+        obstacleScriptableObj.obstacles = new int[cubeArray.Length];
         toggles = new bool[cubeArray.GetLength(0), cubeArray.GetLength(1)];
 
         if (GameManager.instance != null)

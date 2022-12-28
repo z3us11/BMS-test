@@ -34,12 +34,14 @@ public class ObstacleManagerEditor : Editor
             if (GUILayout.Button("Save Obstacles"))
             {
                 obstacleManager.SaveObstacles();
+                EditorUtility.SetDirty(obstacleManager.obstacleScriptableObj);
             }
         }
 
         if (GUILayout.Button("Reset Obstacles"))
         {
             obstacleManager.ResetObstacles();
+            EditorUtility.SetDirty(obstacleManager.obstacleScriptableObj);
         }
     }
 }

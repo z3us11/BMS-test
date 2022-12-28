@@ -25,7 +25,7 @@ public static class AStar
         came_from.Add(start, start);
         cost_so_far.Add(start, 0);
 
-        GridCube current = new GridCube();
+        GridCube current = null;
         while (frontier.Count > 0)
         {
             current = frontier.Dequeue();

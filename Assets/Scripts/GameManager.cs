@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
                                                         cubesArray[(int)gridSpawner.GetCubeIndex(_player.transform.position).x,
                                                                    (int)gridSpawner.GetCubeIndex(_player.transform.position).y], true);
 
-        GridCube endCube = new GridCube();
+        GridCube endCube = null;
         float minDistance = float.MaxValue;
         foreach(var cube in nearestCubes)
         {

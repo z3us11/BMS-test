@@ -50,13 +50,14 @@ public class GridSpawner : MonoBehaviour
 
         return new Vector2(i, j);
     }
-    public void SpawnObstacles(int[] obstacles)
+    public void SpawnObstacles(int[] _obstacles)
     {
+        this.obstacles.Clear();
         for(int i = 0; i < cubesArray.GetLength(0); i++)
         {
             for (int j = 0; j < cubesArray.GetLength(1); j++)
             {
-                if(obstacles[j * cubesArray.GetLength(0) + i] == 1)
+                if(_obstacles[j * cubesArray.GetLength(0) + i] == 1)
                 {
                     cubesArray[i, j].SetObstacle(true);
                     this.obstacles.Add(new Vector2(i, j));
